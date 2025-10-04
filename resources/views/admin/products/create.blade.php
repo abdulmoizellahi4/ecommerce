@@ -2071,17 +2071,17 @@ function toggleAttributeValues(attributeId, checked) {
                                 <li><strong>Click "Done"</strong> - Your custom attribute will be automatically saved!</li>
                                 <li><strong>Next time</strong> you can reuse the same attribute from the dropdown</li>
                             </ol>
-                        </div>
-
+                                                    </div>
+                                                    
                         <!-- Simple Options Section -->
                         <div class="variants-options mb-4">
                             <div id="optionsContainer">
                                 <!-- Options will be dynamically added here -->
-                            </div>
-                            
+                </div>
+
                             <button type="button" class="btn btn-primary mt-3" onclick="addOption()">
                                 <i class="ri-add-line me-1"></i>Add Product Option
-                            </button>
+                        </button>
                         </div>
                     </div>
                 </div>
@@ -2680,14 +2680,14 @@ function toggleAttributeValues(attributeId, checked) {
 <script>
 // Media Library Configuration - Check if already exists
 if (typeof window.mediaLibraryConfig === 'undefined') {
-    window.mediaLibraryConfig = {
-        uploadUrl: '{{ route("admin.media.upload") }}',
-        libraryUrl: '{{ route("admin.media.library") }}',
-        updateUrl: '{{ route("admin.media.update", ":id") }}',
-        deleteUrl: '{{ route("admin.media.destroy", ":id") }}',
-        uploadUrlUrl: '{{ route("admin.media.upload-url") }}',
-        csrf: '{{ csrf_token() }}'
-    };
+window.mediaLibraryConfig = {
+    uploadUrl: '{{ route("admin.media.upload") }}',
+    libraryUrl: '{{ route("admin.media.library") }}',
+    updateUrl: '{{ route("admin.media.update", ":id") }}',
+    deleteUrl: '{{ route("admin.media.destroy", ":id") }}',
+    uploadUrlUrl: '{{ route("admin.media.upload-url") }}',
+    csrf: '{{ csrf_token() }}'
+};
 }
 
 let productMedia = {

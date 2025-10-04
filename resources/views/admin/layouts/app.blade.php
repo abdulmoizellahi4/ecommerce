@@ -63,6 +63,45 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
     <!-- Page specific styles -->
     @stack('styles')
+    
+    <!-- Minimal Sidebar Toggle Styles -->
+    <style>
+        .layout-menu-collapsed #layout-menu {
+            width: 70px !important;
+            transition: width 0.3s ease;
+        }
+        
+        .layout-menu-collapsed #layout-menu .menu-text,
+        .layout-menu-collapsed #layout-menu .menu-header-text {
+            display: none !important;
+        }
+        
+        .layout-menu-collapsed #layout-menu .menu-link {
+            justify-content: center !important;
+            padding: 0.75rem !important;
+        }
+        
+        .layout-menu-collapsed #layout-menu .menu-icon {
+            margin-right: 0 !important;
+        }
+        
+        .layout-menu-collapsed #layout-menu .menu-sub {
+            display: none !important;
+        }
+        
+        .layout-menu-collapsed .layout-page {
+            margin-left: 70px !important;
+            transition: margin-left 0.3s ease;
+        }
+        
+        #layout-menu {
+            transition: width 0.3s ease;
+        }
+        
+        .layout-page {
+            transition: margin-left 0.3s ease;
+        }
+    </style>
 
     <!-- Helpers -->
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
@@ -187,6 +226,37 @@
 <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <!-- Main JS commented out to prevent i18n errors -->
     <!-- <script src="{{ asset('assets/js/main.js') }}"></script> -->
+    
+    <!-- Minimal Navigation Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simple sidebar toggle functionality
+            const toggleButtons = document.querySelectorAll('.layout-menu-toggle');
+            const sidebar = document.getElementById('layout-menu');
+            const body = document.body;
+            
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Toggle collapsed class on body
+                    if (body.classList.contains('layout-menu-collapsed')) {
+                        body.classList.remove('layout-menu-collapsed');
+                        localStorage.setItem('sidebar-collapsed', 'false');
+                    } else {
+                        body.classList.add('layout-menu-collapsed');
+                        localStorage.setItem('sidebar-collapsed', 'true');
+                    }
+                });
+            });
+            
+            // Restore sidebar state from localStorage
+            const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+            if (isCollapsed) {
+                body.classList.add('layout-menu-collapsed');
+            }
+        });
+    </script>
 
     <!-- Page JS -->
     @stack('scripts')
